@@ -10,7 +10,7 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.imgcodecs.*;
 
 class MatchingDemo {
-	public void run(String inFile, String templateFile, int match_method) {
+	public void run(String inFile, String templateFile, String outFile, int match_method) {
 	    System.out.println("\nRunning Template Matching");
 	    Mat img = Imgcodecs.imread(getClass().getResource(inFile).getPath());
 	    Mat templ = Imgcodecs.imread(getClass().getResource(templateFile).getPath());
@@ -47,7 +47,11 @@ class MatchingDemo {
 	    // / Show me what you got
 	    Imgproc.rectangle(img, matchLoc, new Point(matchLoc.x + templ.cols(),
 	            matchLoc.y + templ.rows()), new Scalar(0, 255, 0));
-		
+	
+	    // Save the visualized detection.
+	    System.out.println("Writing "+ outFile);
+	    Imgcodecs.imwrite(outFile, img);
+	
 	    System.out.println("MinVal "+ minminvalue);
 	    System.out.println("MaxVal "+ maxmaxvalue);
 	

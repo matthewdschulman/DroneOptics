@@ -47,7 +47,11 @@ class MatchingDemo {
 	    // / Show me what you got
 	    Imgproc.rectangle(img, matchLoc, new Point(matchLoc.x + templ.cols(),
 	            matchLoc.y + templ.rows()), new Scalar(0, 255, 0));
-		
+	
+	    // Save the visualized detection.
+	    System.out.println("Writing "+ outFile);
+	    Imgcodecs.imwrite(outFile, img);
+	
 	    System.out.println("MinVal "+ minminvalue);
 	    System.out.println("MaxVal "+ maxmaxvalue);
 	

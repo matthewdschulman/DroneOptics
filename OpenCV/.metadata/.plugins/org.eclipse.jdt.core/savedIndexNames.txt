@@ -21,4 +21,3 @@ INDEX VERSION 1.127+/Users/Matt/Documents/Penn_Fall_2015/Senior_Design/OpenCV/.m
 2326659272.index
 4249315662.index
 3000285004.index
-1528892745.index
