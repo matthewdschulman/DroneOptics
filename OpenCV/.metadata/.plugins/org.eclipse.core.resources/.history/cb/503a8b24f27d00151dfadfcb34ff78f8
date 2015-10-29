@@ -1,0 +1,9 @@
+import org.opencv.imgproc.Imgproc;
+
+
+public class TemplateMatching {
+    public static void main(String[] args) {
+        System.loadLibrary("opencv_java249");
+        new MatchingDemo().run("rabbit.jpg", "rab_head.png", "rab_out.jpg", Imgproc.TM_SQDIFF);
+    }
+}
