@@ -1,0 +1,16 @@
+import java.util.HashMap;
+
+import org.opencv.core.Core;
+import org.opencv.imgproc.Imgproc;
+
+
+public class MainSearch {
+    public static void main(String[] args) {
+    	System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    	//coordsResult stores the dimensions of the large image (largeWidth, largeHeight)
+	    //as well as the location of the middle of the QR code (xCoord, yCoord)
+        HashMap<String, Double> coordsResult = 
+        		new FindQR().run("/2a.png", "/2b.png", Imgproc.TM_SQDIFF);
+        System.out.println(coordsResult.get("largeWidth"));
+    }
+}
