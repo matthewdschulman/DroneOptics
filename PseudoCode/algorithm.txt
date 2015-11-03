@@ -1,0 +1,92 @@
+Algorithm for Drone Movement
+
+Note: need to test to find meter (or foot) to pixel ratio at a fixed height (100 ft??)
+do we want to work in ft or m?
+
+Second Note: This implementation moves drone into middle of quadrant for purposes of 	    future error checking but other implementation is moving to get ¼ image size with the QR code in center 
+→ this might be the best one, just requires small changes in this psuedo code (I have this one on paper)
+
+Third Note: Can also have drone move in less number of stages, but I figured it may be best to use a recursive method until at least have some form of experimentation to see how accurate one image can be/ what precision measures we will implement
+
+
+4 components:
+recursive algorithm that splits the image into quarters and moves the drone accordingly
+helper method that finds which quadrant the QR code is in
+landing method (once has reached a certain threshold say ~5 feet)
+when encounter an error/ need more accuracy, method to re-take picture and find QR code location again (this will be same method we start with to take image and calculate the multiplier ratio depending on altitude of drone)
+
+
+start() {
+	altitude = getDroneAlt();
+	// take picture with straight down view from drone, pass to program to locate code
+	HashMap<String, Double> map = getMap();
+	imageWidth = map.get(width);
+imageHeight = map.get(height);
+QRx = get x-coord;
+QRy = get y-coord;
+
+// zoom multiple example ½ 
+zoomMultiple (not sure where we want to add this);
+
+// *** NEED TO EXPERIMENT THIS**
+ftToPixelRatio = getRatio();
+
+moveDrone(altitde, zoomMultiple, dtToPixelRatio, imageW, imagegH, QRx, QRy);
+}
+
+// recursive function to move the drone
+moveDrone(Double alt, Double ratio, Double imgW, Double imgH, Double QRx, Double QRy) {
+	String quad = findQuadrant(QRx, QRy, imgW, imgH);
+	
+	
+	// update the coordinates and the altitude of drone
+	
+	imgW = imgW * zoomMultiple;
+	imgH = imgH * zoomMultiple;
+	if (upper right or lower right
+		QRx = QRx - imgW;
+	if (lower left or lower right)
+		QRy = QRy- imgH;
+	
+	// make calls to drone to physically move it
+	if (quad = upperLeft) 
+		move up by ((ratio) * (imgH - QRy))
+		move left by (ratio * (imgW - QRx))
+	else if (quad is upper Right)
+		move up ( (ratio) * (imgH - QRy))
+		move right (ratio * QRx)
+	else if (quad lowerLeft)
+		move down (ratio * QRy)
+		move Left (ratio * (imgW - QRx))
+	else if (quad lowerRight)
+		move down (ratio * QRy)
+		move right (ratio * QRx)
+	
+	lower drone to (altitude * zoomMultiple)
+
+	if (altitude < threshold)
+		call landing(QRx, QRy);
+	else
+		moveDrone(altitude, zoomMultiple, ratio, imgW, imgH, QRx, QRy);
+	 // will call start function again if need to get a clearer/ better image
+	// not completely necessary for first round of implementation
+	
+}
+
+// helper to find quadrant
+String findQuadrant(Double QRx, Double QRy, Double imgW, Double imgH) {
+	StringBuffer quad = “”;
+	if (QRy > imgH/2) 
+		quad.add(“lower”);
+	else quad.add(“upper”);
+	if (QRx > imgW/2)
+		quad.add(“right”);
+	else quad.add(“left”);
+
+	return quad.toString();
+}
+
+landing() {
+	// not sure what the landing call is but ideally when reach ~5 ft threshold will be directly 
+	// over QR code
+}
