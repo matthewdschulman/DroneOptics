@@ -11,10 +11,16 @@ import org.opencv.imgcodecs.*;
 
 class FindQR {
 	public HashMap<String, Double> run(String inFile, String templateFile, int match_method) {
-	    System.out.println("\nRunning Features2D...\n");
+	    System.out.println("Running Template Matching...\n");
 	    Mat img = Imgcodecs.imread(getClass().getResource(inFile).getPath());
 	    Mat templ = Imgcodecs.imread(getClass().getResource(templateFile).getPath());
-	    
+	    double minlocvalue = 7;
+	    double maxlocvalue = 7;
+	
+	    double minminvalue = 7;
+	    double maxmaxvalue = 7;
+	
+	
 	    // / Create the result matrix
 	    int result_cols = img.cols() - templ.cols() + 1;
 	    int result_rows = img.rows() - templ.rows() + 1;
@@ -30,8 +36,10 @@ class FindQR {
 	    Point matchLoc;
 	    if (match_method == Imgproc.TM_SQDIFF || match_method == Imgproc.TM_SQDIFF_NORMED) {
 	        matchLoc = mmr.minLoc;
+	        minminvalue = mmr.minVal; // test 
 	    } else {
 	        matchLoc = mmr.maxLoc;
+	        maxmaxvalue = mmr.minVal; // test
 	    }
 	
 	    // / Show me what you got

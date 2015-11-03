@@ -9,9 +9,9 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgcodecs.*;
 
-class FindQR {
+class FindQRTemplateMatching {
 	public HashMap<String, Double> run(String inFile, String templateFile, int match_method) {
-	    System.out.println("\nRunning Features2D...\n");
+	    System.out.println("Running Template Matching...\n");
 	    Mat img = Imgcodecs.imread(getClass().getResource(inFile).getPath());
 	    Mat templ = Imgcodecs.imread(getClass().getResource(templateFile).getPath());
 	    
