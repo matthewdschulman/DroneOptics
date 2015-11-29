@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Vector;
 
 import org.opencv.core.Core;
 import org.opencv.core.Core.MinMaxLocResult;
@@ -29,6 +28,30 @@ class FindQR {
 	        System.out.println("Can't read one of the images\n");
 	        return null;
 	    }
+
+	    // detecting keypoints
+	    SurfFeatureDetector detector(400);
+	    vector<KeyPoint> keypoints1, keypoints2;
+	    detector.detect(img1, keypoints1);
+	    detector.detect(img2, keypoints2);
+
+	    // computing descriptors
+	    SurfDescriptorExtractor extractor;
+	    Mat descriptors1, descriptors2;
+	    extractor.compute(img1, keypoints1, descriptors1);
+	    extractor.compute(img2, keypoints2, descriptors2);
+
+	    // matching descriptors
+	    BruteForceMatcher<L2<float> > matcher;
+	    vector<DMatch> matches;
+	    matcher.match(descriptors1, descriptors2, matches);
+
+	    // drawing the results
+	    namedWindow("matches", 1);
+	    Mat img_matches;
+	    drawMatches(img1, keypoints1, img2, keypoints2, matches, img_matches);
+	    imshow("matches", img_matches);
+	    waitKey(0);
 	    
 	    
 //	    KeyPoint[] keypoints = new KeyPoint[1];

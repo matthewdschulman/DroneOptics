@@ -3,4 +3,7 @@
 <fullyQualifiedTypeName name="javax.print.DocFlavor.URL"/>
 <fullyQualifiedTypeName name="java.net.URL"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="org.opencv.features2d.FeatureDetector"/>
+<fullyQualifiedTypeName name="org.opencv.core.MatOfKeyPoint"/>
+<fullyQualifiedTypeName name="org.opencv.features2d.DescriptorExtractor"/>
 </qualifiedTypeNameHistroy>

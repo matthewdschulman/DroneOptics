@@ -1,10 +1,8 @@
 import java.util.HashMap;
-import java.util.Vector;
 
 import org.opencv.core.Core;
 import org.opencv.core.Core.MinMaxLocResult;
 import org.opencv.core.CvType;
-import org.opencv.core.KeyPoint;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfKeyPoint;
 import org.opencv.core.Point;
@@ -17,37 +15,22 @@ import org.opencv.imgcodecs.*;
 class FindQR {
 	public HashMap<String, Double> run(String inFile, String templateFile, int match_method) {
 	    System.out.println("\nRunning Features2D...\n");
-	    
-	    
-	    
 	    Mat img = Imgcodecs.imread(getClass().getResource(inFile).getPath());
-	    Mat templ = Imgcodecs.imread(getClass().getResource(templateFile).getPath());	  
+	    Mat templ = Imgcodecs.imread(getClass().getResource(templateFile).getPath());	    
+	    // MatOfKeyPoint keypoint = new MatOfKeyPoint();
 	    
 	    
-	    if(img.empty() || templ.empty())
-	    {
-	        System.out.println("Can't read one of the images\n");
-	        return null;
-	    }
+	    FeatureDetector detector = FeatureDetector.create(FeatureDetector.ORB);
+	    DescriptorExtractor extractor = DescriptorExtractor.create(DescriptorExtractor.ORB);
+	    
+	    Mat descriptors = new Mat();
+	    detector.detect(img,(MatOfKeyPoint) templ);
+	    extractor.compute(img,(MatOfKeyPoint) templ,descriptors);
 	    
 	    
-//	    KeyPoint[] keypoints = new KeyPoint[1];
-//	    keypoints[0] = templ.;
-//	    MatOfKeyPoint keypoint = new MatOfKeyPoint();
-//	    keypoint.fromArray(keypoints[0]);
-//	    
-//	    
-//	    FeatureDetector detector = FeatureDetector.create(FeatureDetector.ORB);
-//	    DescriptorExtractor extractor = DescriptorExtractor.create(DescriptorExtractor.ORB);
-//	    
-//	    Mat descriptors = new Mat();
-//	    detector.detect(img,templ);
-//	    extractor.compute(img,templ,descriptors);
-//	    
-//	    
-//	    System.out.println("extractor.toString() = " + extractor.toString());
-//	    System.out.println(extractor.descriptorSize());
-//	    System.out.println(extractor.toString());
+	    System.out.println("extractor.toString() = " + extractor.toString());
+	    System.out.println(extractor.descriptorSize());
+	    System.out.println(extractor.toString());
 	    
 	    
 	    
