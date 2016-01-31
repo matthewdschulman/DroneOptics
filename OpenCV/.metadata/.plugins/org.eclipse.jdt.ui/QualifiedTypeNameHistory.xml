@@ -3,4 +3,20 @@
 <fullyQualifiedTypeName name="javax.print.DocFlavor.URL"/>
 <fullyQualifiedTypeName name="java.net.URL"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="org.opencv.features2d.FeatureDetector"/>
+<fullyQualifiedTypeName name="org.opencv.core.MatOfKeyPoint"/>
+<fullyQualifiedTypeName name="org.opencv.features2d.DescriptorExtractor"/>
+<fullyQualifiedTypeName name="org.opencv.core.MatOfDMatch"/>
+<fullyQualifiedTypeName name="org.opencv.features2d.DescriptorMatcher"/>
+<fullyQualifiedTypeName name="org.opencv.features2d.Features2d"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="org.opencv.core.DMatch"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="org.opencv.core.MatOfPoint2f"/>
+<fullyQualifiedTypeName name="org.opencv.core.MatOfByte"/>
+<fullyQualifiedTypeName name="org.opencv.calib3d.Calib3d"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="java.io.ByteArrayInputStream"/>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
 </qualifiedTypeNameHistroy>

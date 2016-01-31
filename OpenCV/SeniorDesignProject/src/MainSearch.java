@@ -12,11 +12,23 @@ public class MainSearch {
     	
     	//the run method takes in two images...the first image is the large image,
     	//and the second image is the QR code
-        HashMap<String, Double> coordsResult = 
-        		new FindQR().run("/2a.png", "/2b.png", Imgproc.TM_SQDIFF);
-        System.out.println("large image width: " + coordsResult.get("largeWidth"));
-        System.out.println("large image height: " + coordsResult.get("largeHeight"));
-        System.out.println("QR image center x coordinate: " + coordsResult.get("xCoord"));
-        System.out.println("QR image center y coordinate: " + coordsResult.get("yCoord"));
+    	String firstImage = "/2a.png";
+    	String secondImage = "/2b.png";
+    	
+    	//first with template matching
+        //HashMap<String, Double> coordsResultTemplateMatching = 
+        		//new FindQRTemplateMatching().run(firstImage, secondImage, Imgproc.TM_SQDIFF);
+        //System.out.println("TM large image width: " + coordsResultTemplateMatching.get("largeWidth"));
+        //System.out.println("TM large image height: " + coordsResultTemplateMatching.get("largeHeight"));
+        //System.out.println("TM QR image center x coordinate: " + coordsResultTemplateMatching.get("xCoord"));
+        //System.out.println("TM QR image center y coordinate: " + coordsResultTemplateMatching.get("yCoord"));
+        
+        //now with features2D framework
+        HashMap<String, Double> coordsResultFeatures2D = 
+        		new FindQR().run(firstImage, secondImage, Imgproc.TM_SQDIFF);
+        System.out.println("F2D large image width: " + coordsResultFeatures2D.get("largeWidth"));
+        System.out.println("F2D large image height: " + coordsResultFeatures2D.get("largeHeight"));
+        System.out.println("F2D QR image center x coordinate: " + coordsResultFeatures2D.get("xCoord"));
+        System.out.println("F2D QR image center y coordinate: " + coordsResultFeatures2D.get("yCoord"));
     }
 }
