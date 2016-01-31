@@ -1,0 +1,2 @@
+/Users/Josh/Desktop/Senior Year 2nd Semester/CIS401/tempp/opencv_qr/CMakeFiles/qr_video.dir
+/Users/Josh/Desktop/Senior Year 2nd Semester/CIS401/tempp/opencv_qr/CMakeFiles/qr_image.dir
