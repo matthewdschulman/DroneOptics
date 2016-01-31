@@ -12,8 +12,8 @@ public class MainSearch {
     	
     	//the run method takes in two images...the first image is the large image,
     	//and the second image is the QR code
-    	String firstImage = "/1a.png";
-    	String secondImage = "/1b.png";
+    	String firstImage = "/7a.png";
+    	String secondImage = "/7b.png";
     	
     	//first with template matching
         //HashMap<String, Double> coordsResultTemplateMatching = 
