@@ -70,7 +70,7 @@ class FindQR {
         DMatch[] matchesArr = matches.toArray();
 
         double max_dist = 0;
-        double min_dist = 20000;
+        double min_dist = 2000;
 
         // -- Quick calculation of max and min distances between keypoints
         for (int i = 0; i < matchesArr.length; i++) {

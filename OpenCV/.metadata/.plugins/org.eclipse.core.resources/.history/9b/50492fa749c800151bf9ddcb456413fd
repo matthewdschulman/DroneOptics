@@ -1,0 +1,86 @@
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.List;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Vector;
+
+import javax.imageio.ImageIO;
+
+import org.opencv.calib3d.Calib3d;
+import org.opencv.core.Core;
+import org.opencv.core.Core.MinMaxLocResult;
+import org.opencv.core.CvType;
+import org.opencv.core.DMatch;
+import org.opencv.core.KeyPoint;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfByte;
+import org.opencv.core.MatOfDMatch;
+import org.opencv.core.MatOfKeyPoint;
+import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+import org.opencv.features2d.DescriptorExtractor;
+import org.opencv.features2d.DescriptorMatcher;
+import org.opencv.features2d.FeatureDetector;
+import org.opencv.features2d.Features2d;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.imgcodecs.*;
+
+class FLANNMatchingQR {
+	public HashMap<String, Double> run(String inFile, String templateFile, int match_method) {
+	    System.out.println("\nRunning FLANN...\n");
+	    	
+	    Mat img_1 = Imgcodecs.imread(getClass().getResource(inFile).getPath());
+	    Mat img_2 = Imgcodecs.imread(getClass().getResource(templateFile).getPath());	  
+	    
+	    // check that images imported properly
+	    if(img_1.empty() || img_2.empty()) { 
+	    	System.out.println(" --(!) Error reading images \n"); 
+	    	System.exit(1);
+	    }
+	    
+	    //-- Step 1: Detect the keypoints using SURF Detector	    
+	    int minHessian = 400;
+
+        FeatureDetector detector = FeatureDetector.create(FeatureDetector.FAST);
+
+        MatOfKeyPoint keypoints_1 = new MatOfKeyPoint();
+        MatOfKeyPoint keypoints_2 = new MatOfKeyPoint();
+
+        detector.detect(img_1, keypoints_1);
+        detector.detect(img_2, keypoints_2);
+        
+        System.out.println(keypoints_1);
+        System.out.println(keypoints_2);
+	    
+	    //-- Step 2: Calculate descriptors (feature vectors)
+        DescriptorExtractor extractor = DescriptorExtractor
+                .create(DescriptorExtractor.ORB);
+
+        Mat descriptors_1 = new Mat();
+        Mat descriptors_2 = new Mat();
+        
+        System.out.println(descriptors_1);
+        System.out.println(descriptors_2);
+
+        extractor.compute(img_1, keypoints_1, descriptors_1);
+        extractor.compute(img_2, keypoints_2, descriptors_2);
+	    
+	    //-- Step 3: Matching descriptor vectors using FLANN matcher
+	    
+	    //-- Quick calculation of max and min distances between keypoints
+	    
+	    //-- Draw only "good" matches (i.e. whose distance is less than 2*min_dist,
+	    //-- or a small arbitary value ( 0.02 ) in the event that min_dist is very
+	    //-- small)
+	    //-- PS.- radiusMatch can also be used here.
+	    
+	    //-- Draw only "good" matches
+	    
+	    //-- Show detected matches
+	    
+	    return null;
+	}
+}
