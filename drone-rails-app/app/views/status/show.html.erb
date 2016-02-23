@@ -1,0 +1,17 @@
+<h1>Status</h1>
+<%= link_to "Home", controller: "welcome", action: "index" %>
+<br>
+
+<h2>Current Status</h2>
+<h4>System Status: <%= @latest_status.system_status %></h4>
+<h4>Status Created At: <%= @latest_status.created_at %></h4>
+<h4>Next Order ID: <%= @latest_status.next_order_id %></h4>
+
+<!--Form Showing Current Status and Allows Updates to Current Status -->
+<br>
+<h2>Update Status
+<%= form_for :status, url: status_path do |f| %>
+  <%= f.text_field :system_status, placeholder: "New System Status" %>        
+  <%= f.text_field :next_order_id, placeholder: "Next Order Id" %>
+  <%= f.submit "Update Status", class: "btn btn-large btn-success" %>
+<% end %>
